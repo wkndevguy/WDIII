@@ -1,0 +1,19 @@
+#logo {
+    max-height: 128px;
+}
+.fillspace {
+    flex:auto;
+}
+.mat-title {
+    margin: 0pt 10pt 0pt 0pt;
+}
+.unauth-form {
+    background-color: white;
+    padding: 0pt 10pt 0pt 10pt;
+}
+#email {
+    width:225pt;
+}
+.mat-input-element {
+    color:black;
+}

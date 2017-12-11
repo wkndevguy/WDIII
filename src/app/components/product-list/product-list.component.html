@@ -1,0 +1,27 @@
+<div>
+  <mat-grid-list cols="6" rowHeight="50px">
+    <div class="listitemtilesdiv" *ngFor="let product of shopbotList | async">
+      <mat-grid-tile class="listitemtile">
+        <mat-checkbox class="listitemcheckbox"></mat-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2" class="producttitle listitemtile">
+        {{ product.title | slice : 0 : 50 }}
+      </mat-grid-tile>
+      <mat-grid-tile class="productmerchant listitemtile">
+        {{ product.offers[product.offer_choice].merchant }}
+      </mat-grid-tile>
+      <mat-grid-tile class="productprice listitemtile">
+        {{ product.offers[product.offer_choice].price | currency : USD : 2 }}
+      </mat-grid-tile>
+      <mat-grid-tile class="listitemtile">
+        <button
+          mat-raised-button
+          color="accent"
+          class="deletebutton"
+          (click)=deleteProductFromList(product)>
+            Delete Item
+        </button>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>

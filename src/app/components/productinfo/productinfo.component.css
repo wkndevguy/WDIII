@@ -1,0 +1,16 @@
+.merchant {
+    background-color: black;
+    padding: 10px 15px 10px 15px;
+    color: white;
+}
+.producttitle {
+    background-color: black;
+    padding: 10px 15px 10px 15px;
+    color: white;
+}
+.description {
+    background-color: #bcbcbc;
+}
+.offercard {
+    background-color: #aaaaaa;
+}

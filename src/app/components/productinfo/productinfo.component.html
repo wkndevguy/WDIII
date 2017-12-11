@@ -1,0 +1,26 @@
+<div style="text-align:center">
+  <mat-toolbar color="primary">
+    Enter UPC code below to retrieve product info.
+  </mat-toolbar>
+  <div class="inputrow" style="margin-top:10px">
+    <mat-form-field>
+      <input 
+      #focusInput 
+      type="text" 
+      clearInput 
+      [(ngModel)]="userUpc" 
+      matInput 
+      type="text" 
+      placeholder="UPC" 
+      (keyup.enter)="checkDigits(userUpc)">
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="checkDigits(userUpc)"
+      style="margin-left:50px">
+        UPC Lookup
+    </button>
+  </div>
+  <app-product *ngFor="let detail of dataArray" [product]="detail"></app-product>
+</div>

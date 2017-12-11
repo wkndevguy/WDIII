@@ -1,0 +1,60 @@
+<!--title:string
+description:string
+upc:string
+lowest_recorded_price:number
+highest_recorded_price:number
+images:Array<string>
+offers:Array<Offer>-->
+  <div class="productcontainer">
+    <mat-grid-list cols="1">
+      <mat-grid-tile>
+        <mat-card>
+          <img width="250" src="{{ product.images[0] }}"><br>
+          <mat-card-content>
+            <mat-card-title class="producttitle">
+                {{ product.title }}
+            </mat-card-title>
+            <h3 class="description">{{ product.description }}</h3>
+            <h3 class="availablebanner" style="background:black;color:white;">Available at:</h3>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="offergrid">
+      <mat-grid-list cols="2" class="offergrid" rowHeight="200px">
+        <mat-grid-tile *ngFor="let offer of product.offers">
+          <div class="offercard mat-elevation-z6" style="background:lightgray;">
+            <mat-toolbar
+              color="primary"
+              class="mat-elevation-z6"
+              style="position:relative;z-index:2">
+                {{ offer.merchant }}
+            </mat-toolbar>
+            <mat-list>
+              <mat-list-item class="offercard">
+                <b>Cost: &ensp;</b> {{ offer.price | currency : USD : 2 }}
+              </mat-list-item>
+              <mat-list-item class="buttonrow" style="margin-bottom:12px">
+                <a
+                  class="buynowbutton"
+                  mat-raised-button
+                  color="accent"
+                  style="margin-right:4px;"
+                  href="{{ offer.link }}">
+                    Shop Now!
+                </a>
+                <button
+                  class="addtolistbutton"
+                  style="margin-left:4px;"
+                  mat-raised-button
+                  color="accent"
+                  (click)="addProductToList(product,offer)">
+                    Add to List
+                </button>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+.listitemtilesdiv {
+    font-size: 12pt;
+}
+.listitemtilesdiv {
+    margin-top: 5px;
+}
+.listitemtile {
+    background: #eee;
+    max-height: none;
+}
+.listitemcheckbox {
+    background: white;
+}
+.producttitle > ::ng-deep figure {
+    justify-content: flex-start !important;
+    margin-left: 10px;
+}
+.productprice > ::ng-deep figure {
+    justify-content: flex-end !important;
+    margin-right: 10px;
+}
+.productmerchant > ::ng-deep figure {
+    text-align: center;
+    margin: 0px 5px 0px 5px;
+}

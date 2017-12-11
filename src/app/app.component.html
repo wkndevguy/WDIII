@@ -1,20 +1,47 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-toolbar color="primary">
+  <img id="logo" src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/14358807_1757249341196612_5081574549653390337_n.jpg?oh=929fc3dfe2a8a30ed4be739b5d527ebb&oe=5ABF5675" >
+  <span class="fillspace"></span>
+  <span class="mat-title" *ngIf="authService.user | async">{{ (authService.user | async)?.email }}</span>
+    
+  <div *ngIf="!(authService.user | async)" class="unauth-form">
+    <mat-form-field id="email">
+      <input matInput type="text" color="accent" [(ngModel)]="email" placeholder="email">
+    </mat-form-field>
+    <mat-form-field id="password">
+      <input matInput type="password" color="accent"  [(ngModel)]="pw" placeholder="password">
+    </mat-form-field>
+    <button id="signup-button" mat-raised-button color="accent" (click)="signUp()" [disabled]="!email || !pw">
+      Signup
+    </button>
+  
+    <button id="login-button" mat-raised-button color="accent" (click)="logIn()" [disabled]="!email || !pw">
+      Login
+    </button>
+  </div>
+  
+  <button id="logout" mat-raised-button color="accent" (click)="logOut()" *ngIf="authService.user | async">
+    Logout
+  </button>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav
+    *ngIf="authService.user | async"
+    #sidenav
+    mode="side"
+    opened="true" 
+  class="mat-elevation-z10">
+      <app-productinfo></app-productinfo>
+  </mat-sidenav>
+          <!-- primary content -->
+  <mat-toolbar *ngIf="authService.user | async" class="listtitle" style="text-align:center" color="primary">
+      <span style="flex:auto"></span>
+      <span>Current List</span>
+      <span style="flex:auto"></span>
+  </mat-toolbar>
+  <button mat-fab *ngIf="authService.user | async" class="example-fab" (click)="sidenavToggle()">
+    <mat-icon>{{ arrow }}</mat-icon>
+  </button>
+  <div class="listcontainer" style="min-height:900px">
+      <app-product-list *ngIf="authService.user | async"></app-product-list>
+  </div>
+</mat-sidenav-container>
